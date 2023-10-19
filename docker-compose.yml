@@ -1,0 +1,50 @@
+version: "3.8"
+services:
+
+  Client:
+    container_name: COURSE
+    build: .\msCourse
+    ports:
+      - "8089:8088"
+    hostname: serviceregistry
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_2:3306/mscourse?useLegacyDatetimeCode=false&serverTimezone=UTC
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "course"
+    depends_on:
+      - Eureka
+      - docker-mysql_2
+
+
+  docker-mysql_2:
+    image: "mysql:5.7"
+    environment:
+      - spring.datasource.username=root
+      - MYSQL_ROOT_PASSWORD=faresmekni
+      - MYSQL_DATABASE=mscourse
+    ports:
+      - 3308:3306
+
+
+
+
+  Eureka:
+    container_name: eureka
+    build: .\eureka
+    ports:
+      - "8761:8761"
+    hostname: serviceregistry
+    image: "eureka"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+
+
+  # docker-mysql_1:
+  #   image: "mysql:lastest"
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=faresmekni
+  #     - MYSQL_DATABASE=mscourse
+  #   ports:
+  #     - 3307:3306
+
+
