@@ -9,6 +9,7 @@ import tn.esprit.mscourse.Service.ICourseService;
 @Controller
 @RestController
 @RequestMapping("/Course")
+@CrossOrigin(origins = "*")
 public class CourseController {
     @Autowired
     ICourseService icourseService;

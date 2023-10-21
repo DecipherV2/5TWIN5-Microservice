@@ -1,0 +1,27 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: GATEWAY
+
+
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*" # or specify headers
+            allowCredentials: true
+      routes:
+        - id: msCourse
+          uri:
+            lb://msCourse
+          predicates:
+            - Path=/Course/**
