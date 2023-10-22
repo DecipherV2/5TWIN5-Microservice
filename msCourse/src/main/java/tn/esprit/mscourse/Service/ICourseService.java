@@ -15,5 +15,7 @@ public interface ICourseService {
     Course updateCourse(Course e);
 
     Course retrieveCourse (Long idCourse);
+    ResponseEntity<HttpSender.Response> add(MultipartFile file, String Article)
+            throws JsonParseException, JsonMappingException, Exception;
 }
 

@@ -23,9 +23,11 @@ public class Course implements Serializable {
     private String titleCourse;
     private String thumbnailCourse;
     private String category;
+    @Column(length = 1000)
     private String descriptionCourse;
     private String coach; // You can use ObjectId here if needed
-    private Date DateCourse;
+    private Date dateCourse;
+    private String image;
     //   private List<Lesson> lessons;
 }
 
